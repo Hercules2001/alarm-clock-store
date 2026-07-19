@@ -3,6 +3,8 @@
   flex-direction: column;
   min-height: 100vh;
   background-color: var(--background);
+  width: 100%;
+  overflow-x: hidden;
 }
 
 /* Promo Banner */
@@ -712,7 +714,7 @@
 @media (max-width: 768px) {
   /* Navbar */
   .navbar {
-    padding: 1rem 1.5rem;
+    padding: 1rem 1.25rem;
   }
   .navLinks {
     display: none; /* Hide standard links on mobile */
@@ -720,48 +722,58 @@
   
   /* Product Layout */
   .productContainer {
-    padding: 2rem 1.25rem;
-    gap: 2.5rem;
+    padding: 1.5rem 1rem;
+    gap: 2rem;
+    width: 100%;
+    overflow: hidden;
   }
   
   /* Typography */
   .title {
-    font-size: 2rem;
+    font-size: 1.75rem;
   }
   .price {
-    font-size: 2.1rem;
+    font-size: 1.85rem;
   }
   .originalPrice {
-    font-size: 1.1rem;
+    font-size: 1rem;
   }
   .reviewsTitle {
-    font-size: 1.75rem;
-    margin-bottom: 2.5rem;
+    font-size: 1.5rem;
+    margin-bottom: 2rem;
+    padding: 0 1rem;
   }
   
   /* Checkout Form */
   .formGrid {
     grid-template-columns: 1fr;
-    gap: 1.25rem;
+    gap: 1rem;
   }
   .checkoutContainer {
-    padding: 1.5rem;
+    padding: 1.25rem;
+    margin-top: 1.5rem;
+    width: 100%;
   }
   .checkoutTitle {
-    font-size: 1.25rem;
+    font-size: 1.15rem;
   }
   
   /* Features & Footer */
   .featuresList {
     grid-template-columns: 1fr;
-    gap: 1.25rem;
+    gap: 1rem;
+    padding-top: 1.5rem;
+    margin-top: 1.5rem;
   }
   .footer {
-    padding: 3rem 1.5rem 2rem;
+    padding: 2.5rem 1rem 1.5rem;
   }
   .footerLinks {
     flex-direction: column;
     align-items: center;
-    gap: 1.25rem;
+    gap: 1rem;
+  }
+  .thumbnailRow {
+    max-width: calc(100vw - 2rem);
   }
 }
