@@ -234,6 +234,34 @@
   margin-bottom: 0.5rem;
 }
 
+.titleRow {
+  display: flex;
+  justify-content: space-between;
+  align-items: flex-start;
+  gap: 1rem;
+}
+
+.shareBtn {
+  background: transparent;
+  border: 1px solid var(--border);
+  color: var(--secondary-foreground);
+  width: 40px;
+  height: 40px;
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  cursor: pointer;
+  transition: all 0.2s;
+  flex-shrink: 0;
+}
+
+.shareBtn:hover {
+  background: #f1f5f9;
+  color: var(--primary);
+  transform: translateY(-2px);
+}
+
 .title {
   font-size: 2.75rem;
   font-weight: 800;
