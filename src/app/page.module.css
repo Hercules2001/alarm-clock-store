@@ -707,3 +707,61 @@
   font-size: 0.85rem;
   text-align: center;
 }
+
+/* Mobile Responsiveness */
+@media (max-width: 768px) {
+  /* Navbar */
+  .navbar {
+    padding: 1rem 1.5rem;
+  }
+  .navLinks {
+    display: none; /* Hide standard links on mobile */
+  }
+  
+  /* Product Layout */
+  .productContainer {
+    padding: 2rem 1.25rem;
+    gap: 2.5rem;
+  }
+  
+  /* Typography */
+  .title {
+    font-size: 2rem;
+  }
+  .price {
+    font-size: 2.1rem;
+  }
+  .originalPrice {
+    font-size: 1.1rem;
+  }
+  .reviewsTitle {
+    font-size: 1.75rem;
+    margin-bottom: 2.5rem;
+  }
+  
+  /* Checkout Form */
+  .formGrid {
+    grid-template-columns: 1fr;
+    gap: 1.25rem;
+  }
+  .checkoutContainer {
+    padding: 1.5rem;
+  }
+  .checkoutTitle {
+    font-size: 1.25rem;
+  }
+  
+  /* Features & Footer */
+  .featuresList {
+    grid-template-columns: 1fr;
+    gap: 1.25rem;
+  }
+  .footer {
+    padding: 3rem 1.5rem 2rem;
+  }
+  .footerLinks {
+    flex-direction: column;
+    align-items: center;
+    gap: 1.25rem;
+  }
+}
