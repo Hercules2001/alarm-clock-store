@@ -19,7 +19,6 @@ export default function Home() {
   const [quantity, setQuantity] = useState(1);
   const [showCheckout, setShowCheckout] = useState(false);
   
-  // Media carousel state. 'video' for video, otherwise '1', '2', etc. for images.
   const [activeMedia, setActiveMedia] = useState("video");
 
   const pricePerUnit = 499;
@@ -39,7 +38,7 @@ export default function Home() {
   const handleQuantityChange = (delta: number) => {
     setQuantity(prev => {
       const newQty = prev + delta;
-      return newQty > 0 ? newQty : 1; // minimum 1
+      return newQty > 0 ? newQty : 1; 
     });
   };
 
@@ -69,22 +68,50 @@ export default function Home() {
   };
 
   const reviews = [
-    { name: "Rahul S.", text: "Absolutely love it! The design is so premium and it fits perfectly on my nightstand. The brightness is just right.", rating: "★★★★★" },
-    { name: "Priya M.", text: "Best alarm clock I've ever owned. Very easy to set up and looks amazing. Highly recommend!", rating: "★★★★☆" },
-    { name: "Amit K.", text: "Looks exactly like the pictures. Premium quality and the alarm is loud enough to wake me up.", rating: "★★★★★" },
+    { 
+      name: "Rahul S.", 
+      title: "Game Changer for Mornings",
+      text: "Absolutely love it! The design is so premium and it fits perfectly on my nightstand. The brightness is just right, and the sunrise feature wakes me up naturally.", 
+      date: "2 days ago",
+      rating: "★★★★★" 
+    },
+    { 
+      name: "Priya M.", 
+      title: "Premium Quality & Feel",
+      text: "Best alarm clock I've ever owned. Very easy to set up and looks amazing. Highly recommend if you want to upgrade your bedroom aesthetic.", 
+      date: "1 week ago",
+      rating: "★★★★★" 
+    },
+    { 
+      name: "Amit K.", 
+      title: "Worth Every Rupee",
+      text: "Looks exactly like the pictures. The alloy build is cold to the touch and feels super expensive. The alarm is loud enough to wake me up.", 
+      date: "2 weeks ago",
+      rating: "★★★★★" 
+    },
   ];
 
   return (
     <main className={styles.main}>
+      {/* Promo Banner */}
+      <div className={styles.promoBanner}>
+        Free Express Shipping on All Orders Today!
+      </div>
+
       {/* Top Navbar */}
-      <nav className={styles.navbar}>
-        <div className={styles.brand}>Kuro</div>
-        <div className={styles.navLinks}>
-          <span className={styles.navLink}>Home</span>
-          <span className={styles.navLink}>Shop</span>
-          <span className={styles.navLink}>Contact</span>
-        </div>
-      </nav>
+      <header className={styles.header}>
+        <nav className={styles.navbar}>
+          <div className={styles.brand}>Kuro</div>
+          <div className={styles.navLinks}>
+            <span className={styles.navLink}>Features</span>
+            <span className={styles.navLink}>Reviews</span>
+            <span className={styles.navLink}>FAQ</span>
+            <button onClick={handleBuyNowClick} className={styles.navBuyBtn}>
+              Order Now
+            </button>
+          </div>
+        </nav>
+      </header>
 
       {/* Main Product Section */}
       <section className={styles.productContainer}>
@@ -140,19 +167,19 @@ export default function Home() {
         <div className={styles.productInfoWrapper}>
           <div className={styles.productInfo}>
             <div>
-              <span className={styles.badge}>Best Seller</span>
+              <span className={styles.badge}>Trending Now</span>
               <h1 className={styles.title}>Lumina Smart Alarm Clock</h1>
               
               <div className={styles.reviewsSummary}>
                 <span className={styles.stars}>★★★★★</span>
-                <span>4.8/5 (1,284 Reviews)</span>
+                <span>4.9/5 based on 1,284 Reviews</span>
               </div>
             </div>
 
             <div className={styles.priceContainer}>
               <span className={styles.price}>₹{pricePerUnit}</span>
               <span className={styles.originalPrice}>₹{originalPricePerUnit}</span>
-              <span className={styles.discountBadge}>-50%</span>
+              <span className={styles.discountBadge}>SAVE 50%</span>
             </div>
 
             <p className={styles.description}>
@@ -179,10 +206,10 @@ export default function Home() {
             {/* Checkout Form (Conditional) */}
             {showCheckout && (
               <div id="checkoutSection" className={styles.checkoutContainer}>
-                <h2 className={styles.checkoutTitle}>Express Checkout (Cash on Delivery)</h2>
+                <h2 className={styles.checkoutTitle}>Express Checkout</h2>
                 {success ? (
                   <div className={styles.successMessage}>
-                    Thank you! Your order has been placed successfully. We will dispatch it shortly.
+                    Thank you! Your order has been placed successfully.<br/> We will dispatch it shortly.
                   </div>
                 ) : (
                   <form onSubmit={handleSubmit}>
@@ -221,7 +248,7 @@ export default function Home() {
                     {error && <p className={styles.error}>{error}</p>}
 
                     <button type="submit" disabled={loading} className={styles.submitBtn}>
-                      {loading ? "Processing..." : `Complete Order - ₹${pricePerUnit * quantity}`}
+                      {loading ? "Processing..." : `Complete Order (COD) - ₹${pricePerUnit * quantity}`}
                     </button>
                   </form>
                 )}
@@ -248,20 +275,50 @@ export default function Home() {
 
       {/* Reviews Section */}
       <section className={styles.reviewsSection}>
-        <h2 className={styles.reviewsTitle}>Customer Reviews</h2>
+        <h2 className={styles.reviewsTitle}>Trusted by 1,000+ Customers</h2>
         <div className={styles.reviewGrid}>
           {reviews.map((review, i) => (
             <div key={i} className={styles.reviewCard}>
-              <div className={styles.stars}>{review.rating}</div>
+              <div className={styles.reviewHeader}>
+                <div className={styles.reviewStars}>{review.rating}</div>
+                <div className={styles.reviewDate}>{review.date}</div>
+              </div>
+              <h3 className={styles.reviewTitle}>{review.title}</h3>
               <p className={styles.reviewText}>"{review.text}"</p>
-              <div style={{ display: 'flex', alignItems: 'center' }}>
-                <p className={styles.reviewAuthor}>{review.name}</p>
-                <span className={styles.verifiedBadge}>Verified Buyer</span>
+              <div className={styles.reviewFooter}>
+                <div className={styles.reviewAuthorInitial}>{review.name.charAt(0)}</div>
+                <div className={styles.reviewAuthorDetails}>
+                  <span className={styles.reviewAuthor}>{review.name}</span>
+                  <span className={styles.verifiedBadge}>
+                    <svg width="12" height="12" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+                      <path d="M12 2C6.48 2 2 6.48 2 12C2 17.52 6.48 22 12 22C17.52 22 22 17.52 22 12C22 6.48 17.52 2 12 2ZM10 17L5 12L6.41 10.59L10 14.17L17.59 6.58L19 8L10 17Z" fill="currentColor"/>
+                    </svg>
+                    Verified Buyer
+                  </span>
+                </div>
               </div>
             </div>
           ))}
         </div>
       </section>
+
+      {/* Professional Footer */}
+      <footer className={styles.footer}>
+        <div className={styles.footerContent}>
+          <div className={styles.footerBrand}>Kuro</div>
+          <div className={styles.footerLinks}>
+            <span className={styles.footerLink}>About Us</span>
+            <span className={styles.footerLink}>Shipping Policy</span>
+            <span className={styles.footerLink}>Refund Policy</span>
+            <span className={styles.footerLink}>Contact Support</span>
+            <span className={styles.footerLink}>Terms of Service</span>
+          </div>
+          <div className={styles.footerDivider}></div>
+          <div className={styles.footerCopyright}>
+            © {new Date().getFullYear()} Kuro India. All rights reserved. Premium digital essentials.
+          </div>
+        </div>
+      </footer>
     </main>
   );
 }
