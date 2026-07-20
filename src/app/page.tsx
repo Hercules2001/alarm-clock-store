@@ -282,13 +282,13 @@ export default function Home() {
 
             <ul className={styles.featuresList}>
               <li className={styles.featureItem}>
-                <span className={styles.featureIcon}>✓</span> Premium Glass & Alloy Build
+                <span className={styles.featureIcon}>✓</span> Premium Plastic Built
               </li>
               <li className={styles.featureItem}>
                 <span className={styles.featureIcon}>✓</span> Smart Sunrise Simulation
               </li>
               <li className={styles.featureItem}>
-                <span className={styles.featureIcon}>✓</span> 1-Year Kuro Warranty
+                <span className={styles.featureIcon}>✓</span> Cash on Delivery
               </li>
               <li className={styles.featureItem}>
                 <span className={styles.featureIcon}>✓</span> Free Express Delivery
