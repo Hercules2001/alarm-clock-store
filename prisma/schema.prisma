@@ -21,5 +21,6 @@ model Order {
   address   String
   landmark  String?
   pincode   String
+  color     String   @default("black")
   createdAt DateTime @default(now())
 }

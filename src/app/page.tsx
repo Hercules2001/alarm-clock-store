@@ -18,6 +18,7 @@ export default function Home() {
   const [error, setError] = useState("");
   const [quantity, setQuantity] = useState(1);
   const [showCheckout, setShowCheckout] = useState(false);
+  const [selectedColor, setSelectedColor] = useState("black");
   
   const [activeMedia, setActiveMedia] = useState("video");
 
@@ -69,7 +70,7 @@ export default function Home() {
       const response = await fetch("/api/checkout", {
         method: "POST",
         headers: { "Content-Type": "application/json" },
-        body: JSON.stringify({ ...formData, quantity }),
+        body: JSON.stringify({ ...formData, quantity, color: selectedColor }),
       });
 
       if (response.ok) {
@@ -103,7 +104,7 @@ export default function Home() {
     { 
       name: "Amit K.", 
       title: "Worth Every Rupee",
-      text: "Looks exactly like the pictures. The alloy build is cold to the touch and feels super expensive. The alarm is loud enough to wake me up.", 
+      text: "Looks exactly like the pictures. The premium plastic finish is smooth and feels super durable. The alarm is loud enough to wake me up.", 
       date: "2 weeks ago",
       rating: "★★★★★" 
     },
@@ -169,13 +170,13 @@ export default function Home() {
             </div>
             
             {/* Image Thumbnails */}
-            {[1, 2, 3, 4, 5, 6].map((num) => (
+            {['1', '2', '3', '4', '5', '6', 'white 1', 'both'].map((imgName) => (
               <div 
-                key={num}
-                className={`${styles.thumbnail} ${activeMedia === String(num) ? styles.thumbnailActive : styles.thumbnailInactive}`}
-                onClick={() => setActiveMedia(String(num))}
+                key={imgName}
+                className={`${styles.thumbnail} ${activeMedia === imgName ? styles.thumbnailActive : styles.thumbnailInactive}`}
+                onClick={() => setActiveMedia(imgName)}
               >
-                <img src={`/assets/${num}.jpg`} alt={`Thumb ${num}`} className={styles.thumbnailImage} />
+                <img src={`/assets/${imgName}.jpg`} alt={`Thumb ${imgName}`} className={styles.thumbnailImage} />
               </div>
             ))}
           </div>
@@ -210,6 +211,30 @@ export default function Home() {
             <p className={styles.description}>
               Wake up refreshed with the Kuro Lumina. Featuring dynamic ambient lighting, intelligent sunrise simulation, and a sleek modern design that elevates any bedroom aesthetic. Limited stock available.
             </p>
+
+            <div className={styles.quantityWrapper} style={{marginBottom: "1rem"}}>
+              <span className={styles.quantityLabel}>Color:</span>
+              <div style={{display: "flex", gap: "10px"}}>
+                <button 
+                  style={{padding: "8px 16px", border: selectedColor === "black" ? "2px solid #000" : "1px solid #ccc", borderRadius: "4px", background: "#fff", cursor: "pointer", color: "#000", fontWeight: selectedColor === "black" ? "bold" : "normal"}}
+                  onClick={() => {
+                    setSelectedColor("black");
+                    setActiveMedia("1");
+                  }}
+                >
+                  Black
+                </button>
+                <button 
+                  style={{padding: "8px 16px", border: selectedColor === "white" ? "2px solid #000" : "1px solid #ccc", borderRadius: "4px", background: "#fff", cursor: "pointer", color: "#000", fontWeight: selectedColor === "white" ? "bold" : "normal"}}
+                  onClick={() => {
+                    setSelectedColor("white");
+                    setActiveMedia("white 1");
+                  }}
+                >
+                  White
+                </button>
+              </div>
+            </div>
 
             <div className={styles.quantityWrapper}>
               <span className={styles.quantityLabel}>Quantity:</span>
@@ -282,7 +307,7 @@ export default function Home() {
 
             <ul className={styles.featuresList}>
               <li className={styles.featureItem}>
-                <span className={styles.featureIcon}>✓</span> Premium Plastic Built
+                <span className={styles.featureIcon}>✓</span> Premium Plastic Build
               </li>
               <li className={styles.featureItem}>
                 <span className={styles.featureIcon}>✓</span> Smart Sunrise Simulation
